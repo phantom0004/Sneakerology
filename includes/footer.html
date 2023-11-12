@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- Used for icons -->
+    </head>
+    <body>
+        <footer class="bg-light text-center text-black mt-4">
+
+            <div class="container p-4 pb-0">
+                <section>
+                    <h1 class = "display-5 font-monospace">Never miss a beat!</h1>
+                    <p class = "text-muted lead">Sign up to our daily newsletter</p>
+                    <form id="newsletterForm">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-auto">
+                                <p class="pt-2 fw-bold">
+                                    Sign up now with email
+                                </p>
+                            </div>
+                            
+                            <div class="col-md-5 col-12">
+                                <div class="form-outline form-black mb-4">
+                                    <input type="email" id="emailInput" class="form-control" required />
+                                </div>
+                            </div>
+
+                            <div class="col-auto">
+                                <button type="submit" id="subscribeButton" class="btn btn-outline-primary mb-4">Subscribe</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+            <script>
+                document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+                    alert('Thank you for subscribing to our newsletter!');
+                    
+                    // Clear the input field
+                    document.getElementById('emailInput').value = '';
+                });
+            </script>                      
+
+            <hr class="bg-primary w-25 mx-auto">
+
+            <div class="container p-4">
+                <!-- Section: Social media -->
+                <section>
+                    <p class = "lead font-monospace">Follow us on our socials</p>
+                    <!-- Facebook -->
+                    <a class="btn btn-outline-primary btn-floating m-1" href="https://www.facebook.com/sneakerologyny/" role="button"><i class="fab fa-facebook-f"></i></a>
+            
+                    <!-- Twitter -->
+                    <a class="btn btn-outline-info btn-floating m-1" href="https://www.instagram.com/sneakerologyny/" role="button"><i class="fab fa-twitter"></i></a>
+            
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-danger btn-floating m-1" href="https://www.instagram.com/sneakerologyny/" role="button"><i class="fab fa-instagram"></i></a>
+                </section>
+            </div>        
+
+            <div class="text-center p-3 bg-black text-white"> 
+                <span> © 2023 Copyright: <a class="text-primary fw-bold" href="#">Sneakerology.com</a> | All rights reserved | Powered by <span class="text-decoration-none fw-bold text-primary">Sneakerology</span> </span>
+            </div>
+
+        </footer>               
+    </body>
+</html>

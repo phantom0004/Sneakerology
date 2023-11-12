@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <div id="uniqueLoading">
+        <img id="uniqueLoadingImg" src="https://media.giphy.com/media/Q6Hp5A7gUS8plLMOHb/giphy.gif" alt="Loading">
+        <p id="uniqueLoadingText">Just a moment, we're lacing up the best sneakers for you...</p>
+    </div>    
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+        #uniqueLoading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white; /* Set background color to white */
+            z-index: 9999;
+            flex-direction: column; /* Align items vertically */
+        }
+
+        #uniqueLoadingImg {
+            width: 650px; /* Increase the width */
+            height: 550px; /* Increase the height */
+        }
+
+        #uniqueLoadingText {
+            margin-top: 20px; /* Add some space above the text */
+            font-size: 24px; /* Increase font size */
+            font-family: 'Roboto', sans-serif; /* Change the font */
+            color: #3498db; /* Change the text color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+            animation: rotate 3s linear infinite; /* Add a rotation animation */
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+            
+            to {
+                transform: rotateY(0.2turn);
+            }
+        }
+    </style>
+
+    <script>
+        window.addEventListener('load', function () {
+            setTimeout(function() {
+                var loadingElement = document.getElementById('uniqueLoading');
+                loadingElement.style.display = 'none'; // Hide the loading element
+            }, 500); // Delay hiding for at least one second
+        });
+    </script>
+</html>

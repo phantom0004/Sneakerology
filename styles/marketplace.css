@@ -1,0 +1,130 @@
+.animate-charcter {
+    background-image: linear-gradient(
+        -225deg,
+        #231557 0%,
+        #44107a 29%,
+        #ff1361 67%,
+        #fff800 100%
+    );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 40px;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.inputbox {
+    position: relative;
+    width: 196px;
+}
+
+.inputbox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+#searchButton {
+    width: 100px; 
+    height: 40px; 
+    font-size: 16px; 
+    border: 0px;
+    margin-top: 20px; 
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    font-size: 1em;
+    color: #8f8f8f;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.inputbox input:valid ~span,
+.inputbox input:focus ~span {
+    color: black;
+    font-weight: bold;
+    transform: translateX(-10px) translateY(-34px);
+    font-size: 0.75em;
+}
+
+.inputbox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #007bff; 
+    border-radius: 4px;
+    transition: 0.5s;
+    pointer-events: none;
+    z-index: 9;
+}
+
+.inputbox input:valid ~i,
+.inputbox input:focus ~i {
+    height: 44px;
+}
+
+.card-product-grid .img-wrap img {
+    transition: transform 0.2s;
+}
+
+.card-product-grid .img-wrap img:hover {
+    transform: scale(1.1);
+}
+
+.popular-products .card {
+    outline: solid 1px;
+    animation: burn 1.5s linear infinite alternate;
+}
+
+@keyframes burn {
+    from {
+        outline-color: #fefcc9;
+    }
+    45% {
+        outline-color: #fefcc9;
+        outline-width: 3px; /* Increase the width at 45% */
+    }
+    70% {
+        outline-color: #ffae34; /* Change outline color at 70% */
+        outline-width: 1px; /* Restore the width to 1px */
+    }
+    to {
+        outline-color: #451b0e;
+    }
+}
+
+@keyframes fireAnimation {
+    0% { color: red; }
+    50% { color: orange; }
+    100% { color: red; }
+}
+
+.fire-text {
+    animation: fireAnimation 1s infinite;
+}
