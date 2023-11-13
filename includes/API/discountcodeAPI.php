@@ -19,7 +19,7 @@
         $response = curl_exec($ch);
 
         if ($response === false) {
-            echo '<script> window.alert("Coupon codes aren\'t available at the moment, please try at a later time"); </script>';
+            echo '<script> window.alert("Coupon codes are not available at the moment, please try at a later time"); </script>';
         } else {
             // Use API data and compare with $userInput
             $apiData = json_decode($response, true);
@@ -39,7 +39,7 @@
                 }
             }
 
-            if ($codeFound && $titleFound) {
+            if ($codeFound && $titleFound) {          
                 echo 'Congratulations! Coupon avaliable : ' . $userInput . ' for ' . $percentage . ' off! Have fun shopping!';
             } else {
                 echo 'Oops! The discount code is incorrect. Please try again.';

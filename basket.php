@@ -26,7 +26,7 @@
             <!-- Function for handling API discount response -->
             <script src = "scripts/discountfunction.js"></script>
         </header>
-        
+
         <div class="py-5 text-center">
             <h2 class = "fw-bold display-5">Basket Summary</h2>
         </div>
@@ -63,20 +63,18 @@
                         function displayBasketItems() {
                             var basketList = document.getElementById('basket-list');
                             var basketItems = <?php echo json_encode($_SESSION['basketItems']) ?> || [];
-                            var totalPrice = 0;
 
                             var list = '';
                             if (basketItems.length > 0) {
                                 basketItems.forEach(function (item) {
                                     var price = parseFloat(item.retailPrice);
                                     if (!isNaN(price)) { // Check if price is a valid number
-                                        totalPrice += price;
                                         list += '<li class="list-group-item d-flex justify-content-between lh-sm">' +
                                             '<div><h6 class="my-0">' + item.shoeName + '</h6></div>' +
                                             '<span class="text-muted">' + '€' + price.toFixed(2) + '</span>' +
                                             '</li>';
                                     } else {
-                                        console.error('Invalid price for item:', item);
+                                        window.alert('Invalid price for item:', item);
                                     }
                                 });
                                 document.getElementById('items-basket').textContent = basketItems.length;
@@ -86,24 +84,27 @@
                             }
 
                             basketList.innerHTML = list;
-
-                            // Update the total price display
-                            var totalElement = document.querySelector('.fw-bold');
-                            if (totalElement) {
-                                totalElement.textContent = '€' + totalPrice.toFixed(2);
-                            } else {
-                                console.error('Total price element not found');
-                            }
                         }
 
                         document.addEventListener('DOMContentLoaded', displayBasketItems);
                     </script>
+
+                    <?php
+                        // Calculate the total price
+                        $totalPrice = 0;
+                        if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) {
+                            foreach ($_SESSION['basketItems'] as $item) {
+                                $totalPrice += floatval($item['retailPrice']);
+                            }
+                        }
+                    ?>
 
                     <form action="includes/API/discountcodeAPI.php" method="post" class="card p-2" id="discount-form">
                         <div class="input-group">
                             <input type="text" class="form-control" id="discount-code" name="discount-code" placeholder="Sneakerology Discount Code" required>
                             <input type="submit" class="btn btn-outline-danger" value="Apply Discount">
                         </div>
+
                         <div class = "font-monospace text-center mt-2" id="message"></div>
                     </form>
 
@@ -114,9 +115,19 @@
                             </button>
                         </form>
 
-                        <p class="mb-0 text-primary">Your total: <span class = "fw-bold"> <?php echo '€' ?> </span></p>
-                    </div>
+                        <?php
+                            // Calculate the total price
+                            $totalPrice = 0;
+                            if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) {
+                                foreach ($_SESSION['basketItems'] as $item) {
+                                    $totalPrice += floatval($item['retailPrice']);
+                                }
+                            }
+                        ?>
 
+                        <p class="mb-0 text-primary">Your total: <span class = "fw-bold"> €<?php echo number_format($totalPrice, 2); ?> </span></p>
+                    </div>
+                    <p class = "lead text-muted text-center mt-3"> Final price will be calculated at checkout </p>
                 </div>
                 
                 <!-- Discount messages styles (error and success) -->
