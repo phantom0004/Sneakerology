@@ -25,7 +25,8 @@
 
             <!-- Function for handling API discount response -->
             <script src = "scripts/discountfunction.js"></script>
-
+            
+            <!-- Handles many functions related to the basket -->
             <script src = "scripts/basket.js"></script>
         </header>
 

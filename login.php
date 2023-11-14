@@ -15,6 +15,10 @@
     <body>
         <header>
             <?php require 'includes/header.php'; ?>
+            
+            <!-- SweetAlert2 library for customized alerts -->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         </header>
         
         <section class="vh-100">
@@ -99,8 +103,20 @@
                             $_SESSION["username"] = $data["user_username"];
                             
                             $username = $data["user_username"];
-                            print("<script> window.alert('Welcome $username, Please proceed') </script>");
-                            print("<script> setTimeout(function(){ window.location.href='index.php'; }, 1000); </script>"); //Wait a bit, then be redirected to the index page
+
+                            echo "<script>
+                            Swal.fire({
+                                title: 'Welcome back $username!',
+                                text: 'You can now continue to use your account features',
+                                icon: 'success',
+                                confirmButtonText: 'Go to the home page',
+                                confirmButtonColor: '#3085d6'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = 'index.php';
+                                }
+                            });
+                          </script>";
                     }
 
                     } else {

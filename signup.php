@@ -15,6 +15,12 @@
     <body>
         <header>
             <?php require 'includes/header.php'; ?>
+            
+            <!-- SweetAlert2 library for customized alerts -->
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+            <!-- Used for confetti animation -->
+            <script src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2'></script>";
         </header>
         
         <section class="vh-200 mt-3" id="section-background">
@@ -143,18 +149,27 @@
                                 ":user_fullname" => $user_fullname,
                             ]);
 
-                            echo "<script src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2'></script>";
-                            echo "<script> 
-                                    confetti({ 
-                                        particleCount: 500, // Increase the number of particles
-                                        spread: 120, // Increase the spread of particles
-                                        origin: { y: 0.6 } 
-                                    }); 
-                                    setTimeout(function(){ 
-                                        window.alert('Thank you for signing up with Sneakerology! Please proceed to the login page');
-                                        window.location.href='login.php'; 
-                                    }, 1000); 
-                                </script>";
+                            echo "<script>
+                                confetti({ 
+                                    particleCount: 500,
+                                    spread: 120,
+                                    origin: { y: 0.6 }
+                                }); 
+
+                                setTimeout(function() {
+                                    Swal.fire({
+                                        title: 'Thank you for creating an account with Sneakerology!',
+                                        text: 'You may now proceed to use all benefits, including buying, selling and much more',
+                                        icon: 'success',
+                                        confirmButtonText: 'I understand, take me to the login page',
+                                        confirmButtonColor: '#3085d6'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            window.location.href = 'login.php';
+                                        }
+                                    });
+                                }, 1000);
+                            </script>";
                             
                         } catch (PDOException $error) {
                             echo "An error has occurred: " . $error->getMessage();
