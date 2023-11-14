@@ -181,6 +181,9 @@
             }
         ?>
 
+        <!-- Close the database connection -->
+        <?php closeConnection(); ?> 
+
         <footer>
             <?php require 'includes/footer.html'; ?>
         </footer>
