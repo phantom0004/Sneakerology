@@ -75,7 +75,7 @@
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-cog"></i> View Profile </a></li>
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="fa fa-user-shield"></i> Change Password</a></li>
                                     <li><a class="dropdown-item" href="scripts/logout.php"><i class="fa fa-sign-out-alt"></i> Logout </a></li>
-                                    
+                                    <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal"><i class="fa fa-ban"></i> Delete account</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>

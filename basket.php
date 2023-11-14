@@ -25,6 +25,8 @@
 
             <!-- Function for handling API discount response -->
             <script src = "scripts/discountfunction.js"></script>
+
+            <script src = "scripts/basket.js"></script>
         </header>
 
         <div class="py-5 text-center">
@@ -213,7 +215,7 @@
         <h4 class="mb-3 text-center text-primary">Proceed with payment details</h4>
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-5">
-                <form action="basket.php" method="post" onsubmit="return validateForm()">
+                <form id="paymentForm" action="basket.php" method="post" onsubmit="return validateForm()">
                     <div class="card rounded-3">
                         <div class="card-body p-4">
                             <p class="fw-bold mb-4">Add your card details:</p>
@@ -247,37 +249,6 @@
                 </form>
             </div>
         </div>
-
-        <script>
-            function validateForm() {
-                var cardholderName = document.getElementById("formControlLgXsd").value;
-                var cardNumber = document.getElementById("formControlLgXM").value;
-                var cardExpire = document.getElementById("formControlLgExpk").value;
-                var cardCvv = document.getElementById("formControlLgcvv").value;
-
-                if (cardholderName === "" || cardNumber === "" || cardExpire === "" || cardCvv === "") {
-                    alert("Please fill in all the required fields.");
-                    return false;
-                }
-                
-                // Run confetti animation if the form is valid
-                confettiAnimation();
-
-                // Allow form submission
-                return true;
-            }
-            
-            function confettiAnimation() {
-                confetti({
-                    particleCount: 500,
-                    spread: 120,
-                    origin: { y: 0.6 }
-                });
-                setTimeout(function () {
-                    window.alert('Your order has been placed! Expect an email confirmation in the coming minutes');
-                }, 1000);
-            }
-        </script>
 
         <div class="bg-secondary py-3 mt-3">
             <div class="container">
