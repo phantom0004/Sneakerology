@@ -72,8 +72,10 @@
                                     <i class="fa fa-user me-2"></i> <?php echo $_SESSION["username"]; ?> <span class = "fst-italic text-primary fw-bold">Status : Buyer</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-cog"></i> Account Settings</a></li>
-                                    <li><a class="dropdown-item" href="includes/logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-cog"></i> View Profile </a></li>
+                                    <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="fa fa-user-shield"></i> Change Password</a></li>
+                                    <li><a class="dropdown-item" href="scripts/logout.php"><i class="fa fa-sign-out-alt"></i> Logout </a></li>
+                                    
                                 </ul>
                             </li>
                         <?php endif; ?>
@@ -149,6 +151,61 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal to delete your account -->
+            <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteAccountModalLabel">Delete Account - <span class = "fw-bold text-danger">This action is irreversable</span></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="scripts/deleteaccount.php" method="post">
+                                <div class="mb-3">
+                                    <label for="userEmail" class="col-form-label">Re-enter your account email:</label>
+                                    <input type="email" class="form-control" id="userEmail" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userPassword" class="col-form-label">Re-enter your account password:</label>
+                                    <input type="password" class="form-control" id="userPassword" name="password" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger w-100">Delete Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal to change your password -->
+            <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordModalLabel">Change your account password</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="scripts/changepassword.php" method="post">
+                                <div class="mb-3">
+                                    <label for="oldPassword" class="col-form-label">Old Password:</label>
+                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="newPassword" class="col-form-label">New Password:</label>
+                                    <p class = "text-muted">Ensure it has more then 10 characters and has at least a number</p>
+                                    <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary w-100">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

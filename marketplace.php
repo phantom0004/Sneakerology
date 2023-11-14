@@ -288,7 +288,7 @@
             function updatePageInSession(page) {
                 // Send an AJAX request to update the session 'page' value
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'includes/updatePage.php?page=' + page, true);
+                xhr.open('GET', 'script/updatepage.php?page=' + page, true);
                 xhr.send();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
