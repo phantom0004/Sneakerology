@@ -102,6 +102,7 @@
             <div class="row justify-content-center" id="imageContainer">
                 <?php
                     $sneakerData = $sneakerapiResponse['results'];
+                    shuffle($sneakerData);
 
                     foreach ($sneakerData as $index => $sneaker) {
                         $imageURL = $sneaker['image']['original'];

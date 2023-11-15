@@ -20,13 +20,17 @@
 
             // Notify user and redirect using JavaScript
             echo "<script> 
-                alert('Your account has been successfully deleted.'); 
+                alert('Your account has been successfully deleted. You will now be logged out'); 
                 window.location.href = 'logout.php'; 
             </script>";
+
+            closeConnection();
             exit;
         } else {
             // Handle incorrect credentials
-            echo "<script> alert('Incorrect email or password.'); window.location.href = '../index.php'; </script>";
+            echo "<script> alert('Incorrect email or password. Please ensure account details are correct'); window.location.href = '../index.php'; </script>";
+
+            closeConnection();
             exit;
         }
     }

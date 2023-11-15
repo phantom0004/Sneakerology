@@ -18,11 +18,8 @@
             <?php require 'includes/API/getpopularproductsAPI.php'; ?> <!-- Gets popular products across many vendors -->
             <?php require 'includes/API/getallproductsAPI.php'; ?> <!-- Another API that gets a list of a multitude of products to view (non-popular and also popular) -->
 
-            <!-- Handles functions for the search bar -->
-            <script src="scripts/searchfunction.js"></script>
-
-            <!-- Handles functions for sorting items -->
-            <script src="scripts/sortfunction.js"></script>
+            <!-- Handles functions for the search bar and sort function -->
+            <script src="scripts/searchandsortfunction.js"></script>
 
             <!-- Link to CSS file -->
             <link rel="stylesheet" type="text/css" href="styles/marketplace.css">
@@ -143,7 +140,7 @@
                 }
             }
         ?>
-        
+
         <!-- ALL PRODUCTS API PRODUCTS -->
         <div class="container mt-4">
             <div class="d-flex justify-content-center flex-wrap">
@@ -288,7 +285,7 @@
             function updatePageInSession(page) {
                 // Send an AJAX request to update the session 'page' value
                 var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'script/updatepage.php?page=' + page, true);
+                xhr.open('GET', 'scripts/updatepage.php?page=' + page, true);
                 xhr.send();
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState == 4 && xhr.status == 200) {
