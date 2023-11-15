@@ -1,37 +1,54 @@
 <?php
+     if (session_status() != PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
     // Initialize the 'page' session variable if it doesn't exist
     if (!isset($_SESSION['page'])) {
         $_SESSION['page'] = 0;
     }
 
     $page = $_SESSION['page']; // Get the 'page' value from the session
-
     $sneakapiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
 
     // Determine the limit based on the current page
-    if (basename($_SERVER['PHP_SELF']) == 'index.php') {
-        $limit = 34; // Display fewer items on the index page only (faster loading times)
-    } else {
-        $limit = 64; // Display items on other pages (e.g., marketplace.php), needs to be divisable by 4 for a neater display
-    }
+    $limit = basename($_SERVER['PHP_SELF']) == 'index.php' ? 34 : 64;
 
-    $curlch = curl_init();
     $sneakerurl = 'https://the-sneaker-database.p.rapidapi.com/sneakers?limit=' . $limit . '&page=' . $page;
 
-    curl_setopt($curlch, CURLOPT_URL, $sneakerurl);
-    curl_setopt($curlch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curlch, CURLOPT_HTTPHEADER, [
-        'X-RapidAPI-Key: ' . $sneakapiKey, 
-        'X-RapidAPI-Host: the-sneaker-database.p.rapidapi.com'
-    ]);
+    // Define the new cache directory path
+    $cacheDirectory = 'Sneakerology/allproduct_cache_memory/';
 
-    $sneakerresponse = curl_exec($curlch);
+    // Update the cache file variable to include the new directory path
+    $cacheFile = $cacheDirectory . 'cache_' . md5($sneakerurl) . '.json';
+    $cacheTime = 3600; // Cache time in seconds
 
-    curl_close($curlch);
+    // Ensure that the cache directory exists and create it if it doesn't
+    if (!file_exists($cacheDirectory)) {
+        mkdir($cacheDirectory, 0777, true); // Create the directory recursively with full permissions
+    }
 
-    if ($sneakerresponse !== false) {
-        $sneakerapiResponse = json_decode($sneakerresponse, true);
+    // Check if cache file exists and is still valid
+    if (file_exists($cacheFile) && (filemtime($cacheFile) > (time() - $cacheTime))) {
+        $sneakerapiResponse = json_decode(file_get_contents($cacheFile), true);
     } else {
-        print("<script> window.alert('An unforseen error has occured. Please try reload the page and ensure you have an internet connection');</script>");
+        // Fetch new data and cache it
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => "X-RapidAPI-Key: $sneakapiKey\r\n" .
+                            "X-RapidAPI-Host: the-sneaker-database.p.rapidapi.com\r\n"
+            ]
+        ]);
+
+        $sneakerresponse = file_get_contents($sneakerurl, false, $context);
+
+        if ($sneakerresponse !== false) {
+            $sneakerapiResponse = json_decode($sneakerresponse, true);
+            file_put_contents($cacheFile, $sneakerresponse); // Cache the response
+        } else {
+            echo "<script> window.alert('An error occurred. Please try reloading the page and ensure you have an internet connection');</script>";
+            exit;
+        }
     }
 ?>
