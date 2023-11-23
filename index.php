@@ -8,12 +8,15 @@
 
         <!-- Bootstrap HTML Links and Other Library Links -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"> <!-- Used for animations -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> <!-- Used for icons -->
+        <!-- Used for animations -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+        <!-- Used for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> 
     </head>
 
     <body>
         <header>
+            <!-- Adds website header -->
             <?php require 'includes/header.php'; ?>
 
             <!-- Include product api -->
@@ -23,6 +26,7 @@
             <link rel="stylesheet" type="text/css" href="styles/index.css">
         </header>
 
+        <!-- Carousel banner images for advertising -->
         <div class="container-xxl p-0">
         <!-- Image Carousel with Arrows -->
             <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
@@ -41,6 +45,34 @@
                             <div class="carousel-item active"> <!-- DISCOUNT BANNER IMAGE -->
                                 <img src="assets/banner_product_3.png" class="d-block w-100 img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_3">
                             </div>
+
+                            <div class="carousel-item active"> <!-- DISCOUNT BANNER IMAGE -->
+                                <img src="assets/banner_product_4.webp" class="d-block w-100 img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_4">
+                            </div>
+
+                            <!-- Special events discount banners -->
+                            <?php
+                                // Check if it's November (month number 11), for black friday discounts
+                                if (date('m') == '11') {
+                                    echo '<div class="carousel-item active">
+                                            <img src="assets/banner_product_blackfriday_sale.webp" class="d-block w-100 img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_blackfriday_sale">
+                                          </div>';
+                                }
+                                
+                                // Check if it's December (month number 12), for christmas discounts
+                                if(date('m') == '12') {
+                                    echo '<div class="carousel-item active">
+                                            <img src="assets/banner_product_christmas_sale.webp" class="d-block w-100 img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_christmas_sale">
+                                          </div>';
+                                }
+
+                                // Check if it's October (month number 10), for halloween discounts
+                                if(date('m') == '10') {
+                                    echo '<div class="carousel-item active">
+                                            <img src="assets/banner_product_halloween_sale.webp" class="d-block w-100 img-fluid" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_halloween_sale">
+                                          </div>';
+                                }
+                            ?>
                         </div>
 
                         <!-- Left and Right Arrows -->
@@ -57,7 +89,8 @@
             </div>
         </div>
 
-        <div class = "container-xxl text-center"> <!-- Use PHP to remove this if user is a seller already -->
+        <!-- Advertise selling accounts to user -->
+        <div class = "container-xxl text-center"> 
             <div class="d-flex align-items-center justify-content-center">
                 <span class = "display-6 font-monospace fw-bold p-1 m-2">Join the family. Start selling sneakers now  </span>
                 <button type="button" class="btn btn-outline-primary btn-lg m-3" data-bs-toggle="modal" data-bs-target="#myModal" id = "become-seller"> Begin Journey </button></a>
@@ -97,6 +130,7 @@
             </div>
         </div>
 
+        <!-- Product recomendation-->
         <div class="container text-center" id="imageContainer">
             <p class="h2 font-monospace fw-bold m-5 animate__animated animate__pulse">See what is trending around you</p>
             <div class="row justify-content-center" id="imageContainer">
@@ -121,7 +155,8 @@
         <div class="container text-center">
             <hr class="bg-primary w-25 mx-auto">
         </div>
-
+        
+        <!-- Brand recomendations -->
         <div class="container text-center my-5">
             <h2 class="font-monospace fw-bold m-2">Browse more brands</h1>
             <p class="lead text-mute m-0">We think these may interest you</p>
@@ -146,7 +181,8 @@
                 </div>
             </div>
         </div>
-
+        
+        <!-- Help section, user can find the store or else contact sneakerology via the help page -->
         <div class = "container">
             <h2 class="font-monospace fw-bold text-center m-1">Questions?</h2>
             <p class = "lead text-mute m-2 text-center">You can either email us or find us</p>
@@ -178,12 +214,13 @@
                 </div>
             </div>
         </div>
+
+        <!-- Bootstrap Javascript Link -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
                         
         <footer>
             <?php require 'includes/footer.html'; ?>
         </footer>
 
-        <!-- Bootstrap Javascript Link -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -18,6 +18,7 @@
 
     <body>
         <header>
+            <!-- Adds the header -->
             <?php require 'includes/header.php'; ?>
 
             <!-- Discount API to handle checking of discount code -->
@@ -30,10 +31,12 @@
             <script src = "scripts/basket.js"></script>
         </header>
 
+        <!-- Website message header -->
         <div class="py-5 text-center">
             <h2 class = "fw-bold display-5">Basket Summary</h2>
         </div>
 
+        <!-- Cart information, holds all data of added products and more -->
         <div class="container">
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4 order-md-last">
@@ -42,9 +45,10 @@
                         <span class="badge bg-primary rounded-pill" id="items-basket">0</span>
                     </h4>
 
+                    <!-- Basket logic, this section handles adding and clearing items in the shopping basket -->
                     <?php
                         if (isset($_POST["submit"])) {
-                            // Append the new item to the basketItems session array
+                            // If the "submit" button is pressed (product is added to the basket), append the new item to the basketItems session array
                             $_SESSION['basketItems'][] = [
                                 'shoeName' => $_POST['shoeName'],
                                 'retailPrice' => $_POST['retailPrice']
@@ -54,21 +58,23 @@
 
                     <?php
                         if (isset($_POST['clearBasket'])) {
-                            // Clear the basketItems session array
+                            // If the "clearBasket" button is pressed (basket is cleared), clear the basketItems session array
                             $_SESSION['basketItems'] = [];
-                        }                        
+                        }
                     ?>
                     <ul class="list-group mb-3" id="basket-list">
-                        <!-- This will be populated dynamically using JavaScript -->
+                        <!-- This unordered list will be populated dynamically using JavaScript to display the basket items -->
                     </ul>
 
                     <script>
+                        // JavaScript function to display the basket items dynamically
                         function displayBasketItems() {
                             var basketList = document.getElementById('basket-list');
                             var basketItems = <?php echo json_encode($_SESSION['basketItems']) ?> || [];
 
                             var list = '';
                             if (basketItems.length > 0) {
+                                // If there are items in the basket, loop through them and create list items for each
                                 basketItems.forEach(function (item) {
                                     var price = parseFloat(item.retailPrice);
                                     if (!isNaN(price)) { // Check if price is a valid number
@@ -77,31 +83,37 @@
                                             '<span class="text-muted">' + '€' + price.toFixed(2) + '</span>' +
                                             '</li>';
                                     } else {
+                                        // Display an alert if the price for an item is invalid
                                         window.alert('Invalid price for item:', item);
                                     }
                                 });
+                                // Update the displayed item count
                                 document.getElementById('items-basket').textContent = basketItems.length;
                             } else {
+                                // Display a message if the basket is empty
                                 list = '<li class="list-group-item">Your basket is currently empty</li>';
                                 document.getElementById('items-basket').textContent = '0';
                             }
 
+                            // Populate the basket list with the dynamically generated content
                             basketList.innerHTML = list;
                         }
 
+                        // Call the displayBasketItems function when the DOM is loaded to show initial basket items
                         document.addEventListener('DOMContentLoaded', displayBasketItems);
                     </script>
 
                     <?php
                         // Calculate the total price
                         $totalPrice = 0;
-                        if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) {
+                        if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) { //Checks if there is a session before incrementing price
                             foreach ($_SESSION['basketItems'] as $item) {
                                 $totalPrice += floatval($item['retailPrice']);
                             }
                         }
                     ?>
 
+                    <!-- Handles discount information -->
                     <form action="includes/API/discountcodeAPI.php" method="post" class="card p-2" id="discount-form">
                         <div class="input-group">
                             <input type="text" class="form-control" id="discount-code" name="discount-code" placeholder="Sneakerology Discount Code" required>
@@ -110,7 +122,8 @@
 
                         <div class = "font-monospace text-center mt-2" id="message"></div>
                     </form>
-
+                    
+                    <!-- Clears the basket if clicked as well as the price -->
                     <div class="d-flex justify-content-between align-items-center mt-3">
                         <form action="basket.php" method="POST">
                             <button type="submit" name="clearBasket" class="btn btn-sm btn-outline-primary">
@@ -118,22 +131,12 @@
                             </button>
                         </form>
 
-                        <?php
-                            // Calculate the total price
-                            $totalPrice = 0;
-                            if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) {
-                                foreach ($_SESSION['basketItems'] as $item) {
-                                    $totalPrice += floatval($item['retailPrice']);
-                                }
-                            }
-                        ?>
-
                         <p class="mb-0 text-primary">Your total: <span class = "fw-bold"> €<?php echo number_format($totalPrice, 2); ?> </span></p>
                     </div>
                     <p class = "lead text-muted text-center mt-3"> Final price will be calculated at checkout </p>
                 </div>
                 
-                <!-- Discount messages styles (error and success) -->
+                <!-- Inline CSS for discount messages styles (error and success), only CSS style used -->
                 <style>
                     .success-message {
                         color: green;
@@ -144,6 +147,7 @@
                     }
                 </style>
 
+                <!-- All information pertinent to billing information -->
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3 text-primary">Billing address</h4>
                     <div class="row g-3">
@@ -210,9 +214,10 @@
         </div>
 
         <div class="container text-center">
-            <hr class="bg-primary w-25 mx-auto">
+            <hr class="bg-primary w-25 mx-auto"> <!-- Seperation with line -->
         </div>
-
+        
+        <!-- Payment details section -->
         <h4 class="mb-3 text-center text-primary">Proceed with payment details</h4>
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-5">
@@ -250,7 +255,7 @@
                 </form>
             </div>
         </div>
-
+        
         <div class="bg-secondary py-3 mt-3">
             <div class="container">
                 <div class="row">
@@ -266,11 +271,11 @@
             </div>
         </div>          
 
+        <!-- Bootstrap Javascript Link -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
         <footer>
             <?php require 'includes/footer.html'; ?>
         </footer>
-
-        <!-- Bootstrap Javascript Link -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 </html>
