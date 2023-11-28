@@ -1,4 +1,4 @@
-<!-- Name: Daryl Gatt <-> Student ID: 2407468 -->
+<!-- Daryl Gatt (2407468) -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
