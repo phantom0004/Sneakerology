@@ -1,4 +1,6 @@
 <?php
+    ini_set('display_errors', '0'); //Hide all errors that the API may throw
+
      if (session_status() != PHP_SESSION_ACTIVE) {
         session_start();
     }
@@ -17,7 +19,7 @@
     $sneakerurl = 'https://the-sneaker-database.p.rapidapi.com/sneakers?limit=' . $limit . '&page=' . $page;
 
     // Define the new cache directory path
-    $cacheDirectory = 'Sneakerology/allproduct_cache_memory/';
+    $cacheDirectory = 'allproducts_cache_memory/'; //ENSURE THIS IS GOOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // Update the cache file variable to include the new directory path
     $cacheFile = $cacheDirectory . 'cache_' . md5($sneakerurl) . '.json';
@@ -48,6 +50,7 @@
             file_put_contents($cacheFile, $sneakerresponse); // Cache the response
         } else {
             echo "<script> window.alert('An error occurred. Please try reloading the page and ensure you have an internet connection');</script>";
+            print("<script> setTimeout(function(){ window.location.href='index.php'; }, 50); </script>"); //Wait a bit, then be redirected to the index page
             exit;
         }
     }

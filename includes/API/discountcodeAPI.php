@@ -1,4 +1,6 @@
 <?php
+    ini_set('display_errors', '0'); //Hide all errors that the API may throw
+
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['discount-code'])) {
         $userInput = $_POST['discount-code'];
 

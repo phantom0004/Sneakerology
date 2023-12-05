@@ -1,4 +1,6 @@
 <?php
+    ini_set('display_errors', '0'); //Hide all errors that the API may throw
+
     if (session_status() != PHP_SESSION_ACTIVE) {
         session_start();
     }
@@ -6,11 +8,11 @@
     $url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=20';
     $apiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
 
-    // Define the new cache directory path (without "Sneakerology" in it)
-    $cacheDirectory = 'cache_memory/';
+    // Define the cache directory path
+    $cacheDirectory = 'popularproducts_cache_memory/';
 
     // Update the cache file variable to include the new directory path
-    $cacheFile = 'C:/xampp/htdocs/Sneakerology/' . $cacheDirectory . 'cache_' . md5($url) . '.json';
+    $cacheFile = $cacheDirectory . 'cache_' . md5($url) . '.json';
     $cacheTime = 3600; // Cache time in seconds
 
     // Ensure that the cache directory exists and create it if it doesn't
@@ -39,6 +41,7 @@
         } else {
             header('HTTP/1.1 500 Internal Server Error');
             echo "<script> window.alert('An error occurred. Please try reloading the page and ensure you have an internet connection');</script>";
+            print("<script> setTimeout(function(){ window.location.href='index.php'; }, 50); </script>"); //Wait a bit, then be redirected to the index page
             exit;
         }
     }
