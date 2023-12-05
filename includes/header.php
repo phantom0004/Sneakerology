@@ -15,6 +15,12 @@
             <?php
                 $requested_page = basename(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)); // Get the path from the URL
 
+                //Prevent the user from traversing back to areas he should not be
+                if (strpos($requested_page, '..') !== false) {
+                    header("Location: index.php"); // Redirect to index.php
+                    exit;
+                }
+
                 //All avaliable pages to navigate
                 $valid_pages = array(
                     "basket.php",
@@ -28,7 +34,7 @@
                 );
 
                 if (!in_array($requested_page, $valid_pages)) {
-                    header("Location: ../pagenotfound.html");
+                    header("Location: ../404.php");
                     exit; // Terminate the script to prevent further processing
                 }
             ?>
@@ -84,7 +90,7 @@
                 </div>     
             </nav>
             
-            <!-- Styles the current page you are on in the-->
+            <!-- Styles the current page navigation title you are on -->
             <style> 
                 @keyframes glow {
                     0% {
