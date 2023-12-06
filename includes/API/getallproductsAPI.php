@@ -19,8 +19,8 @@
     $sneakerurl = 'https://the-sneaker-database.p.rapidapi.com/sneakers?limit=' . $limit . '&page=' . $page;
 
     // Define the new cache directory path
-    $cacheDirectory = 'allproducts_cache_memory/'; //ENSURE THIS IS GOOD !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+    $cacheDirectory = 'allproducts_cache_memory/'; 
+    
     // Update the cache file variable to include the new directory path
     $cacheFile = $cacheDirectory . 'cache_' . md5($sneakerurl) . '.json';
     $cacheTime = 3600; // Cache time in seconds

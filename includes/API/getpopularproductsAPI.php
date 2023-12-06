@@ -5,7 +5,7 @@
         session_start();
     }
 
-    $url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=20';
+    $url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=8'; //Limit in link
     $apiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
 
     // Define the cache directory path
@@ -17,7 +17,7 @@
 
     // Ensure that the cache directory exists and create it if it doesn't
     if (!file_exists($cacheDirectory)) {
-        mkdir($cacheDirectory, 0777, true); // Create the directory recursively with full permissions
+        mkdir($cacheDirectory, 0777, true); 
     }
 
     // Check if cache file exists and is still valid

@@ -89,14 +89,6 @@
     height: 44px;
 }
 
-.card-product-grid .img-wrap img {
-    transition: transform 0.2s;
-}
-
-.card-product-grid .img-wrap img:hover {
-    transform: scale(1.1);
-}
-
 .popular-products .card {
     outline: solid 1px;
     animation: burn 1.5s linear infinite alternate;
@@ -108,11 +100,11 @@
     }
     45% {
         outline-color: #fefcc9;
-        outline-width: 3px; /* Increase the width at 45% */
+        outline-width: 3px; 
     }
     70% {
-        outline-color: #ffae34; /* Change outline color at 70% */
-        outline-width: 1px; /* Restore the width to 1px */
+        outline-color: #ffae34; 
+        outline-width: 1px; 
     }
     to {
         outline-color: #451b0e;

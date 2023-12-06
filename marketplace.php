@@ -71,11 +71,11 @@
                         $imageURL = $sneaker['thumbnail'];
                         $shoeName = $sneaker['shoeName'];
                         $retailPrice = $sneaker['retailPrice'];
-                        $description = $sneaker['description']; // Assuming 'description' holds the story
-
+                        $description = $sneaker['description'];
+                        
                         echo '<div class="card card-product-grid m-4" style="width: 250px;">
                                 <a href="#" class="img-wrap" data-bs-toggle="modal" data-bs-target="#sneakerModal' . $i . '">
-                                    <img src="' . $imageURL . '" alt="productImage" class="card-img-top">
+                                    <img src="' . $imageURL . '" alt="productImage" class="card-img-top px-3"> 
                                 </a>
                                 <div class="card-body text-center">
                                     <h5 class="card-title fw-bold font-monospace">' . $shoeName . '</h5>
@@ -177,7 +177,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <img src="' . $imageURL . '" alt="Product image" class="img-fluid mb-2 productImage">';
+                                            <img src="' . $imageURL . '" alt="Product image" class="img-fluid mb-2 productImage ">';
                                             // Check if the 'story' array is not blank
                                             if (!empty($story)) {
                                                 // Output the story

@@ -131,22 +131,81 @@
             </div>
         </div>
 
-        <!-- Product recomendation-->
+        <!-- Product recommendation-->
         <div class="container text-center" id="imageContainer">
             <p class="h2 font-monospace fw-bold m-5 animate__animated animate__pulse">See what is trending around you</p>
-            <div class="row justify-content-center" id="imageContainer">
+            <div class="row justify-content-center">
                 <?php
+                    $counter = 0;
                     $sneakerData = $sneakerapiResponse['results'];
                     shuffle($sneakerData);
 
                     foreach ($sneakerData as $index => $sneaker) {
+                        if($counter >= 3){
+                            break;
+                        }
+
+                        $shoeName = $sneaker['name'];
                         $imageURL = $sneaker['image']['original'];
-                        if(!empty($imageURL)){
-                            echo '<div class="col-6 col-md-4 mb-4">
-                                <div class="card shadow" id = "product_card_index">
-                                    <a href = "marketplace.php"><img src="' . $imageURL . '" class="card-img-top mx-auto d-block" alt="popular_sneaker_image"></a>
-                                </div>
-                            </div>';
+                        $retailPrice = $sneaker['retailPrice']; 
+
+                        if (!empty($imageURL)) {
+                            // Card for each sneaker
+                            echo '<div class="col-6 col-md-4 mb-4">';
+                            echo '    <div class="card h-100 shadow marketplace-sneaker-popular" id="product_card_index">'; 
+                            echo '        <img src="' . $imageURL . '" class="card-img-top mx-auto d-block" alt="' . htmlspecialchars($shoeName) . '" data-bs-toggle="modal" data-bs-target="#sneakerModal' . $index . '">';
+                            echo '        <h5 class="modal-title font-monospace fw-bold px-2" id="sneakerModalLabel' . $index . '">' . htmlspecialchars($shoeName) . '</h5>';
+                            echo '        <p class = "fw-bold mt-3">Current retail price: <span class = "text-primary">$' .htmlspecialchars($retailPrice) . '</span> </p>';
+                            echo '    </div>';
+                            echo '</div>';
+
+                            // Modal for each sneaker
+                            echo '<div class="modal fade" id="sneakerModal' . $index . '" tabindex="-1" aria-labelledby="sneakerModalLabel' . $index . '" aria-hidden="true">';
+                            echo '    <div class="modal-dialog modal-dialog-centered modal-lg">';
+                            echo '        <div class="modal-content">';
+                            echo '            <div class="modal-header">';
+                            echo '                <h5 class="modal-title font-monospace fw-bold" id="sneakerModalLabel' . $index . '">' . htmlspecialchars($shoeName) . '</h5>';
+                            echo '                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>';
+                            echo '            </div>';
+                            echo '            <div class="modal-body">';
+                            echo '                <img src="' . $imageURL . '" alt="Product image" class="img-fluid mb-2 productImage">';
+
+                            // Insert the shoe size selection content here
+                            echo '<hr class="bg-primary w-25 mx-auto mt-4">';
+                            echo '<p class="lead fw-bold text-center">Select your shoe size</p>';
+                            echo '<div class="container mt-4">';
+                            echo '    <table class="table table-bordered">';
+                            echo '        <thead>';
+                            echo '            <tr>';
+                            echo '                <th>EU Size</th>';
+                            echo '                <th>Male</th>';
+                            echo '                <th>Female</th>';
+                            echo '            </tr>';
+                            echo '        </thead>';
+                            echo '        <tbody>';
+
+                            // Assuming EU sizes for both male and female
+                            for ($size = 35; $size <= 45; $size++) {
+                                echo '<tr>';
+                                echo '    <td><a href="#" class="text-decoration-none fw-bold">' . $size . '</a></td>';
+                                echo '    <td>' . ($size + 1) . '</td>';
+                                echo '    <td>' . ($size - 1) . '</td>';
+                                echo '</tr>';
+                            }
+
+                            echo '        </tbody>';
+                            echo '    </table>';
+                            echo '</div>'; // End of shoe size selection content
+
+                            echo '            </div>'; // Close modal-body
+                            echo '            <div class="modal-footer">';
+                            echo '                <a href="marketplace.php" class="btn btn-outline-primary w-100">Check product in marketplace</a>';
+                            echo '            </div>'; // Close modal-footer
+                            echo '        </div>'; // Close modal-content
+                            echo '    </div>'; // Close modal-dialog
+                            echo '</div>'; // Close modal
+
+                            $counter++;
                         }
                     }
                 ?>
@@ -160,24 +219,24 @@
         <!-- Brand recomendations -->
         <div class="container text-center my-5">
             <h2 class="font-monospace fw-bold m-2">Browse more brands</h1>
-            <p class="lead text-mute m-0">We think these may interest you</p>
+            <p class="lead text-mute mb-2">We think these may interest you</p>
 
             <div class="row">
                 <div class="col-4">
                     <a href="marketplace.php">
-                        <img src="https://images.fineartamerica.com/images/artworkimages/medium/3/bape-logo-bape-collab-transparent.png" alt="popular_brand_1" class="img-fluid image-hover">
-                    </a>
-                </div>
-
-                <div class="col-4" style="margin-top: 100px;">
-                    <a href="marketplace.php">
-                        <img src="https://staticg.sportskeeda.com/editor/2023/03/b579f-16776871165574-1920.jpg" alt="popular_brand_2" class="img-fluid image-hover">
+                        <img src="https://images.fineartamerica.com/images/artworkimages/medium/3/bape-logo-bape-collab-transparent.png" alt="popular_brand_1" width = "250px" class="img-fluid image-hover">
                     </a>
                 </div>
 
                 <div class="col-4">
                     <a href="marketplace.php">
-                        <img src="https://admin.showstudio.com/images/ynvX_Z118ksae-rfslrFi_A0Ou8=/383435/width-1280/YEEZY_LOGO.jpg" alt="popular_brand_3" class="img-fluid image-hover">
+                        <img src="https://staticg.sportskeeda.com/editor/2023/03/b579f-16776871165574-1920.jpg" alt="popular_brand_2" width = "250px" class="img-fluid image-hover">
+                    </a>
+                </div>
+
+                <div class="col-4">
+                    <a href="marketplace.php">
+                        <img src="https://admin.showstudio.com/images/ynvX_Z118ksae-rfslrFi_A0Ou8=/383435/width-1280/YEEZY_LOGO.jpg" width = "250px" alt="popular_brand_3" class="img-fluid image-hover">
                     </a>
                 </div>
             </div>
