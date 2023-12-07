@@ -1,5 +1,3 @@
-<?php require "includes/config.php" ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,12 +13,13 @@
     <body>
         <header>
             <?php require 'includes/header.php'; ?>
+            <?php require "includes/config.php" ?>
             
             <!-- SweetAlert2 library for customized alerts -->
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
         </header>
         
+        <!-- Section to log the user in -->
         <section class="vh-100">
             <div class="container-fluid">
                 <div class="row">
@@ -50,11 +49,12 @@
                                     <p id = "incorrect_password_prompt" class = "lead text-danger fw-bold m-5" style = "display: none;">Email or password incorrect!</p>
                                 </div>
 
-                                <p>Don't have an account? <a href="signup.php" class="text-primary">Register an account with us</a></p>
+                                <p>Don't have an account? <a href="signup.php" class="text-primary">Register an account with us</a></p> <!-- Create account option -->
                             </form>
                         </div>
                     </div>
 
+                    <!-- Custom image to customize the login page -->
                     <div class="col-sm-6 px-0 d-none d-sm-block">
                         <img src="assets\sneakersloginwallpaper.jpg" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
                     </div>
@@ -62,7 +62,7 @@
             </div>
         </section>
 
-        <style> /* Style for the content above */
+        <style> /* Minimal inline CSS to style for the content above */
             .bg-image-vertical {
                 position: relative;
                 overflow: hidden;
@@ -78,8 +78,9 @@
             }
         </style>
 
-        <!-- Handles logins -->
+        <!-- Handles login functions -->
         <?php
+            //Checks if submit as been pressed
             if(isset($_POST["submit"])) {
                 $email = $_POST["email"];
                 $password = $_POST["password"];
@@ -103,7 +104,8 @@
                             $_SESSION["username"] = $data["user_username"];
                             
                             $username = $data["user_username"];
-
+                            
+                            //This is for the custom message that appiers after the login
                             echo "<script>
                             Swal.fire({
                                 title: 'Welcome back $username!',
@@ -118,7 +120,8 @@
                             });
                           </script>";
                     }
-
+                    
+                    //Customises the page to display an error message if the user enters the wrong credentials
                     } else {
                         echo  "<script>
                                     var passwordInput = document.getElementById('password');
@@ -148,7 +151,7 @@
                             </script>";
                     }
                 }
-                catch (PDOException $error){
+                catch (PDOException $error){ //Display a friendly error if there was an error with the login
                     print("<script> window.alert('Oops! An unforseen error has occured, please attempt to login at a later time'); </script>");
                 }
               }

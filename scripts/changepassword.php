@@ -1,12 +1,12 @@
 <?php
     session_start();
-    require '../includes/config.php'; // Adjust the path as necessary
+    require '../includes/config.php'; 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oldPassword = $_POST['oldPassword'];
         $newPassword = $_POST['newPassword'];
 
-        // Assuming username is stored in the session
+        //Username is stored in the session
         $username = $_SESSION['username'];
 
         // Validate new password

@@ -39,6 +39,7 @@
                 }
             ?>
 
+            <!-- Navigation bar -->
             <nav class="navbar navbar-expand-lg navbar-light bg-light container-fluid">          
                 <a class="navbar-brand" href="index.php">
                     <img src="assets/sneakerologylogo.png" alt="sneakerology-logo" width="120" height="90" class="d-inline-block ">
@@ -46,37 +47,39 @@
                 </a>
                 <div class = "ms-auto">           
                     <ul class="navbar-nav">
-                        <li class="nav-item ps-5 <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active glowing'; ?>">
+                        <li class="nav-item ps-5 <?php if (basename($_SERVER['PHP_SELF']) == 'index.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                             <a class="nav-link font-monospace" href="index.php"><i class="fas fa-home text-primary"></i> Home</a>
                         </li>
 
-                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'ourmission.php') echo 'active glowing'; ?>">
+                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'ourmission.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                             <a class="nav-link font-monospace" href="ourmission.php"><i class="fas fa-bullseye text-primary"></i> Our Mission</a>
                         </li>
 
-                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'marketplace.php') echo 'active glowing'; ?>">
+                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'marketplace.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                             <a class="nav-link font-monospace" href="marketplace.php"><i class="fas fa-store text-primary"></i> Marketplace</a>
                         </li>
 
                         <?php if(!isset($_SESSION["username"])) : ?>
-                            <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'login.php') echo 'active glowing'; ?>">
+                            <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'login.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                                 <a class="nav-link font-monospace" href="login.php"><i class="fas fa-sign-in-alt text-primary"></i> Login</a>
                             </li>
                         <?php endif; ?>
 
-                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'help.php') echo 'active glowing'; ?>">
+                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'help.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                             <a class="nav-link font-monospace" href="help.php"><i class="fas fa-question-circle text-primary"></i> Help</a>
                         </li>
 
-                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'basket.php') echo 'active glowing'; ?>">
+                        <li class="nav-item ps-5 <?php if(basename($_SERVER['PHP_SELF']) == 'basket.php') echo 'active glowing'; ?>"> <!-- If user in this page, glow words-->
                             <a class="nav-link font-monospace" href="basket.php"><i class="fas fa-shopping-basket text-primary"></i> View Basket</a>
                         </li>
-
+                        
+                        <!-- If there is a username session, display the user information such as their account status and more -->
                         <?php if(isset($_SESSION["username"])) : ?>
-                            <li class="nav-item dropdown ps-5">
+                            <li class="nav-item dropdown ps-5"> <!-- Mini nav bar -->
                                 <a class="nav-link dropdown-toggle p-2" href="#" role="button" data-bs-toggle="dropdown">
                                     <i class="fa fa-user me-2"></i> <?php echo $_SESSION["username"]; ?> <span class = "fst-italic text-primary fw-bold">Status : Buyer</span>
                                 </a>
+                                <!-- Delete, create, view account and logout -->
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="fas fa-cog"></i> View Profile </a></li>
                                     <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="fa fa-user-shield"></i> Change Password</a></li>
@@ -123,22 +126,26 @@
                         <div class="modal-body p-0"> 
                             <div class="card profile">
 
+                                <!-- Default user account profile banner -->
                                 <div class="upper text-center">
                                     <img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid w-100 mb-3" style="border-top-left-radius: 10px; border-top-right-radius: 10px;">
                                 </div>
 
+                                <!-- Default user account profile picture -->
                                 <div class="text-center justify-content-center align-items-center"> 
                                     <div class="profile">
                                         <img src="https://icons.veryicon.com/png/o/education-technology/alibaba-big-data-oneui/user-profile.png" class="rounded-circle" width="80">
                                     </div>
                                 </div>
 
+                                <!-- Account information inside modal -->
                                 <div class="mt-3 text-center">
                                     <h4 class="mb-0 fw-bold"><?php echo $_SESSION["username"]; ?></h4>
                                     <span class="text-muted d-block lead mb-2">Malta</span>
                                     <a href = "comingsoon.php"><button class="btn btn-dark btn-sm w-20" style="border-radius: 15px;">Edit your account</button></a>
                                 </div>
 
+                                <!-- Account social status -->
                                 <div class="d-flex justify-content-between align-items-center mt-4 px-4">
                                     <div class="stats">
                                         <h6 class="mb-0">Followers</h6>

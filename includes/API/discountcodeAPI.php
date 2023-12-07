@@ -14,9 +14,9 @@
         $ch = curl_init($url);
 
         // Set cURL options
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // Return the response as a string
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);  // Set custom headers
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);  // Disable SSL verification (not recommended for production)
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);   // Return the response as a string
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);   // Set custom headers
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);  // Disable SSL verification (not recommended for production!), we will utalize this for ease of use
 
         $response = curl_exec($ch);
 

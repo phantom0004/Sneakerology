@@ -70,7 +70,7 @@
                         // JavaScript function to display the basket items dynamically
                         function displayBasketItems() {
                             var basketList = document.getElementById('basket-list');
-                            var basketItems = <?php echo json_encode($_SESSION['basketItems']) ?> || [];
+                            var basketItems = <?php echo json_encode($_SESSION['basketItems']) ?> || []; //Adds item name to the basket page, uses a session
 
                             var list = '';
                             if (basketItems.length > 0) {
@@ -108,19 +108,19 @@
                         $totalPrice = 0;
                         if (isset($_SESSION['basketItems']) && is_array($_SESSION['basketItems'])) { //Checks if there is a session before incrementing price
                             foreach ($_SESSION['basketItems'] as $item) {
-                                $totalPrice += floatval($item['retailPrice']);
+                                $totalPrice += floatval($item['retailPrice']); //Appends price
                             }
                         }
                     ?>
 
                     <!-- Handles discount information -->
-                    <form action="includes/API/discountcodeAPI.php" method="post" class="card p-2" id="discount-form">
+                    <form action="includes/API/discountcodeAPI.php" method="post" class="card p-2" id="discount-form"> <!-- Connects to the API for discounts -->
                         <div class="input-group">
                             <input type="text" class="form-control" id="discount-code" name="discount-code" placeholder="Sneakerology Discount Code" required>
                             <input type="submit" class="btn btn-outline-danger" value="Apply Discount">
                         </div>
 
-                        <div class = "font-monospace text-center mt-2" id="message"></div>
+                        <div class = "font-monospace text-center mt-2" id="message"></div> <!-- Display a message, either the coupon is successful or not -->
                     </form>
                     
                     <!-- Clears the basket if clicked as well as the price -->
@@ -149,6 +149,7 @@
 
                 <!-- All information pertinent to billing information -->
                 <div class="col-md-7 col-lg-8">
+                    <!-- Billing address information -->
                     <h4 class="mb-3 text-primary">Billing address</h4>
                     <div class="row g-3">
                         <div class="col-sm-6">
@@ -167,6 +168,8 @@
                             <label for="address" class="form-label">Delivery Address</label>
                             <input type="text" class="form-control" id="address" required>
                         </div>
+
+                        <!-- Choose a country or state -->
                         <div class="col-md-5">
                             <label for="country" class="form-label">Country</label>
                             <select class="form-select" id="country" required>
@@ -175,6 +178,8 @@
                                 <option>Gozo</option>
                             </select>
                         </div>
+
+                        <!-- All cities-->
                         <div class="col-md-4">
                             <label for="state" class="form-label">City</label>
                             <select class="form-select" id="city" required>
@@ -201,6 +206,8 @@
                             <input type="text" class="form-control" id="zip" required>
                         </div>
                     </div>
+
+                    <!-- Preferences checkbox -->
                     <div class="form-check my-5">
                         <input type="checkbox" class="form-check-input" id="same-address">
                         <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
@@ -221,7 +228,7 @@
         <h4 class="mb-3 text-center text-primary">Proceed with payment details</h4>
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-5">
-                <form id="paymentForm" action="basket.php" method="post" onsubmit="return validateForm()">
+                <form id="paymentForm" action="basket.php" method="post" onsubmit="return validateForm()"> <!-- Javascript function used to check for validation-->
                     <div class="card rounded-3">
                         <div class="card-body p-4">
                             <p class="fw-bold mb-4">Add your card details:</p>
@@ -256,6 +263,7 @@
             </div>
         </div>
         
+        <!-- Friendly message telling user that all transactions are safe -->
         <div class="bg-secondary py-3 mt-3">
             <div class="container">
                 <div class="row">

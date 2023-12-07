@@ -22,6 +22,6 @@ document.getElementById("time").innerHTML = days + "d " + hours + "h " + minutes
 // If the count down is finished, write some text
 if (distance < 0) {
     clearInterval(x);
-    document.getElementById("time").innerHTML = "EXPIRED";
+    document.getElementById("time").innerHTML = "Countdown expired! Sneakerology will be updating their website anytime now!";
     }
 }, 1000);

@@ -1,5 +1,3 @@
-<?php require 'includes/config.php' ?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,6 +13,7 @@
     <body>
         <header>
             <?php require 'includes/header.php'; ?>
+            <?php require 'includes/config.php' ?>
             
             <!-- SweetAlert2 library for customized alerts -->
             <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -23,6 +22,7 @@
             <script src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2'></script>";
         </header>
         
+        <!-- Section that handles sign up page -->
         <section class="vh-200 mt-3" id="section-background">
             <div class="mask d-flex align-items-center h-100">
                 <div class="container h-100">
@@ -33,12 +33,14 @@
                                     <h2 class="text-uppercase font-monospace text-center fw-bold">Create an account with us</h2>
                                     <p class="lead text-muted text-center">Unlock all features possible</p>
 
+                                    <!-- Display these messages ONLY if the credentials are incorrect -->
                                     <div class="mb-4 text-center">
                                         <p id="incorrect_password_prompt_password" class="lead text-danger fw-bold m-2" style="display: none;">Make sure the password exceeds 10 characters and has at least one number</p>
                                         <p id="incorrect_password_prompt_username" class="lead text-danger fw-bold m-2" style="display: none;">Email or username already in use</p>
                                         <p id="incorrect_password_prompt_password_match" class="lead text-danger fw-bold m-2" style="display: none;">Repeated passwords do not match</p>
                                     </div>
 
+                                    <!-- Form which handles the sign up -->
                                     <form method="post" action="signup.php">
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="fullname">Your Full Name</label>
@@ -71,6 +73,7 @@
                                             <p id = "incorrect_password_prompt" class = "lead text-danger fw-bold m-5" style = "display: none;">Repeated password doesnt match!</p>
                                         </div>
 
+                                        <!-- Required field to make sure the user knows what he is opting in for -->
                                         <div class="form-check d-flex justify-content-center mb-3">
                                             <input class="form-check-input me-2" type="checkbox" value="" id="termsandconditions" required>
                                             <label class="form-check-label" for="termsandconditions"> I read and agreed to the <a href="https://www.aliveshoes.com/sneakerology-god/terms" target=_blank class="text-primary">Terms of service</a> </label>
@@ -89,7 +92,8 @@
                 </div>
             </div>
         </section>
-
+        
+        <!-- Script that handles input validation -->
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var passwordInput = document.getElementById('password');
@@ -119,7 +123,9 @@
             }
         </style>
 
+        <!-- Handle form information with php  -->
         <?php
+            //Store all information in a session
             if (isset($_POST["submit"])) {
                 $user_fullname = $_POST["fullname"];
                 $user_username = $_POST["username"];
@@ -135,12 +141,14 @@
                 ]);
                 $count = $checkQuery->fetchColumn();
 
+                //If credentials already exists inform user
                 if ($count > 0) {
                     // Email or username already exists
                     echo "<script>document.getElementById('incorrect_password_prompt_username').style.display = 'block';</script>";
-                } else {
+                } else { //Credentials dont already exist, so proceed here:
                     if ($user_password === $user_password_confirmation) {
                         try {
+                            //Insert user credentials into database
                             $insert = $conn->prepare("INSERT INTO users (user_username, user_email, user_password, full_name) VALUES (:user_username, :user_email, :user_password, :user_fullname)");
                             $insert->execute([
                                 ":user_username" => $user_username,
@@ -148,7 +156,8 @@
                                 ":user_password" => password_hash($user_password, PASSWORD_DEFAULT),
                                 ":user_fullname" => $user_fullname,
                             ]);
-
+                            
+                            //Fun confetti animation when user managed to sign in
                             echo "<script>
                                 confetti({ 
                                     particleCount: 500,
@@ -171,10 +180,10 @@
                                 }, 1000);
                             </script>";
                             
-                        } catch (PDOException $error) {
-                            echo "An error has occurred: " . $error->getMessage();
+                        } catch (PDOException) { //Display an error if anything goes wrong
+                            echo "<script> window.alert('An unforseen error has occured! Try reload to page'); </script>";
                         }
-                    } else {
+                    } else { //Display an error message if the credentials are of incorrect type
                         echo "<script>document.getElementById('incorrect_password_prompt_password').style.display = 'block';</script>";
                     }
                 }

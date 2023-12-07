@@ -30,11 +30,11 @@
         <!-- Carousel banner images for advertising -->
         <div class="container-xxl p-0">
         <!-- Image Carousel with Arrows -->
-            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500">
+            <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2500"> <!--Change carosel every 2.5 seconds -->
                 <div class="border border-primary border-5 rounded p-2 m-2">
-                    <a href="marketplace.php">
+                    <a href="marketplace.php"> <!-- Once clicked to go marketplace -->
                      <!-- Images -->
-                        <div class="carousel-inner" style = "height : 400px;">
+                        <div class="carousel-inner" style = "height : 400px;"> <!-- Default height to ensure all pictures fit -->
                             <div class="carousel-item active"> <!-- DISCOUNT BANNER IMAGE -->
                                 <img src="assets/banner_product_1.png" class="d-block w-100" style="object-fit: cover; width: 100%; height: 100%;" alt="A banner displaying latest news" id="banner_product_1">
                             </div>
@@ -99,6 +99,7 @@
         </div>
 
         <!-- Modal for the above code, when button clicked activate this modal -->
+        <!-- This is a small advertisement telling the user to create his selling account -->
         <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl d-flex justify-content-center align-items-center">
                 <div class="modal-content">
@@ -113,6 +114,7 @@
                             </div>
                             <div class="col-md-6">
                                 <p class="fw-bold text-primary">Join the family and become a seller now. Here are some of the benefits:</p>
+                                <!-- List of benefits -->
                                 <ul>
                                     <li>Reach a global audience of sneaker enthusiasts.</li>
                                     <li>Expand your brand and grow your business.</li>
@@ -125,7 +127,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a href = "comingsoon.php"><button id="become-seller"> Start now </button></a>
+                        <!-- Logic not implemented, until now redirect user to a coming soon page -->
+                        <a href = "comingsoon.php"><button id="become-seller"> Start now </button></a> 
                     </div>
                 </div>
             </div>
@@ -135,14 +138,15 @@
         <div class="container text-center" id="imageContainer">
             <p class="h2 font-monospace fw-bold m-5 animate__animated animate__pulse">See what is trending around you</p>
             <div class="row justify-content-center">
+                <!-- Shows max of 3 products on the screen, uses an API -->
                 <?php
                     $counter = 0;
                     $sneakerData = $sneakerapiResponse['results'];
-                    shuffle($sneakerData);
+                    shuffle($sneakerData); //Shuffle information to so products appier randomized
 
                     foreach ($sneakerData as $index => $sneaker) {
                         if($counter >= 3){
-                            break;
+                            break; //Break to avoid more products being shown 
                         }
 
                         $shoeName = $sneaker['name'];
@@ -221,20 +225,20 @@
             <h2 class="font-monospace fw-bold m-2">Browse more brands</h1>
             <p class="lead text-mute mb-2">We think these may interest you</p>
 
-            <div class="row">
+            <div class="row"> <!-- HYPERBEAST BRAND IMAGE -->
                 <div class="col-4">
                     <a href="marketplace.php">
                         <img src="https://images.fineartamerica.com/images/artworkimages/medium/3/bape-logo-bape-collab-transparent.png" alt="popular_brand_1" width = "250px" class="img-fluid image-hover">
                     </a>
                 </div>
 
-                <div class="col-4">
+                <div class="col-4"> <!-- HYPERBEAST BRAND IMAGE -->
                     <a href="marketplace.php">
                         <img src="https://staticg.sportskeeda.com/editor/2023/03/b579f-16776871165574-1920.jpg" alt="popular_brand_2" width = "250px" class="img-fluid image-hover">
                     </a>
                 </div>
 
-                <div class="col-4">
+                <div class="col-4"> <!-- HYPERBEAST BRAND IMAGE -->
                     <a href="marketplace.php">
                         <img src="https://admin.showstudio.com/images/ynvX_Z118ksae-rfslrFi_A0Ou8=/383435/width-1280/YEEZY_LOGO.jpg" width = "250px" alt="popular_brand_3" class="img-fluid image-hover">
                     </a>
@@ -249,10 +253,12 @@
 
             <div class="container m-3">
                 <div class="row">
+                    <!-- Google maps link , with real location-->
                     <div class="col-md-6">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3020.4627752401275!2d-73.67463752426795!3d40.79582337138107!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2888e80303743%3A0x7396e9013d093f27!2sSneakerology!5e0!3m2!1sen!2smt!4v1697541996458!5m2!1sen!2smt" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
-
+            
+                    <!-- Contact page -->
                     <div class="col-md-6">
                         <div class = "container bg-black text-white text-center p-3">
                             <p class = "lead fw-bold font-monospace text-center">Contact us here:</p>
@@ -262,6 +268,7 @@
                             <p class = "fw-bold lead"> Cant solve your issue? Visit the <a href = "help.php" class = "text-decoration-none"><span class = "text-primary" id = "help-section">help</span></a> section</h3>
                         </div>
                         
+                        <!-- Opening hours -->
                         <div class = "container text-center bg-light text-black">
                             <p class = "lead font-monospace">Our store is open on:</p>
                             <p class="mb-3"><span class="fw-bold">Monday:</span> 9:00 AM - 6:00 PM</p>

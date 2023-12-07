@@ -60,13 +60,11 @@ function submitFormData() {
 
     $.ajax({
         type: 'POST',
-        url: 'basket.php', // Your form submission endpoint
+        url: 'basket.php', // Form submission endpoint
         data: formData,
         success: function(response) {
             // Run confetti animation
             confettiAnimation();
-
-            // You can process any response from the server here
         },
         error: function() {
             alert('Error in form submission.');
