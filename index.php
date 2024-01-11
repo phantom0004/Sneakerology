@@ -188,7 +188,7 @@
                             echo '        </thead>';
                             echo '        <tbody>';
 
-                            // Assuming EU sizes for both male and female
+                            // EU sizes for both male and female
                             for ($size = 35; $size <= 45; $size++) {
                                 echo '<tr>';
                                 echo '    <td><a href="#" class="text-decoration-none fw-bold">' . $size . '</a></td>';
