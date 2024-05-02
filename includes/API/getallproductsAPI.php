@@ -11,7 +11,7 @@
     }
 
     $page = $_SESSION['page']; // Get the 'page' value from the session
-    $sneakapiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
+    $sneakapiKey = '[REDACTED]';
 
     // Determine the limit based on the current page
     $limit = basename($_SERVER['PHP_SELF']) == 'index.php' ? 34 : 64;
