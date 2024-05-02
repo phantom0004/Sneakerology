@@ -1,11 +1,11 @@
 <?php
     //MySQL details
-    $host = "localhost";
+    $host = "[REDACTED]";
     $dbname = "SneakerologyDB";
 
     //MySQL User Credentials
-    $user = "root";
-    $pass = "root";
+    $user = "[REDACTED]";
+    $pass = "[REDACTED]";
 
     //MySQL connection attempt/error handing
     ini_set('display_errors', 0); // Hides all errors for security reasons
