@@ -4,7 +4,7 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['discount-code'])) {
         $userInput = $_POST['discount-code'];
 
-        $apiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
+        $apiKey = '[REDACTED]';
         $url = 'https://get-promo-codes.p.rapidapi.com/data/get-coupons/?sort=update_time_desc';
         $headers = [
             'X-RapidAPI-Key: ' . $apiKey,
