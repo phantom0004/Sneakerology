@@ -6,7 +6,7 @@
     }
 
     $url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=8'; //Limit in link
-    $apiKey = 'cffe8e29e1mshe3c4ee5fb73cb02p117b74jsn4a695943b449';
+    $apiKey = '[REDACTED]';
 
     // Define the cache directory path
     $cacheDirectory = 'popularproducts_cache_memory/';
