@@ -4,7 +4,7 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['discount-code'])) {
         $userInput = $_POST['discount-code'];
 
-        $apiKey = '[REDACTED]';
+        $apiKey = getenv('COUPON_API_KEY'); // From github enviromental variables
         $url = 'https://get-promo-codes.p.rapidapi.com/data/get-coupons/?sort=update_time_desc';
         $headers = [
             'X-RapidAPI-Key: ' . $apiKey,
