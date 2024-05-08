@@ -33,3 +33,6 @@ Then proceed with the following steps:
 - To view the website, run it on a PHP server using the following URL: localhost/sneakerology/index.php
 - Explore and interact with the different sections of the website.
 - Make changes or enhancements as desired.
+
+## Licensing and Rights
+This project is under the MIT license, all rights reserved.
