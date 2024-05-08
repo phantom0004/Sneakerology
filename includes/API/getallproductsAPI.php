@@ -11,7 +11,7 @@
     }
 
     $page = $_SESSION['page']; // Get the 'page' value from the session
-    $sneakapiKey = '[REDACTED]';
+    $sneakapiKey = getenv('SNEAK_API_KEY'); // Comes from the github enviromental key
 
     // Determine the limit based on the current page
     $limit = basename($_SERVER['PHP_SELF']) == 'index.php' ? 34 : 64;
