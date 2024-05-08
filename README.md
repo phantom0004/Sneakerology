@@ -4,7 +4,7 @@
 ![Sneakerology](https://github.com/phantom0004/Sneakerology/assets/42916447/014bad07-799a-4c3d-9a2f-ec137530f33e)
 
 ## Overview
-This repository contains the source code for the Sneakerology website, a school assignment project. The website showcases various sneakers and allows users to browse and explore different sneaker models.
+This repository contains the source code for the Sneakerology website, a school assignment project. The website showcases various sneakers and allows users to browse and explore different sneaker models. These instructions guide users on how to set up their environment, obtain API keys, and use the program effectively.
 
 ## Project Structure
 The project is structured as follows:
@@ -27,6 +27,12 @@ git clone https://github.com/phantom0004/Sneakerology.git
 
 Then proceed with the following steps:
 
+- Navigate to the Sneakerology/includes/API/.env file.
+- Redeem an API key from the following free websites listed in the `.env` file:
+  -> [Coupon API](https://rapidapi.com/189766587/api/get-promo-codes)
+  -> [Sneak API](https://rapidapi.com/belchiorarkad-FqvHs2EDOtP/api/sneaker-database-stockx)
+  -> [Popular API](https://rapidapi.com/tg4-solutions-tg4-solutions-default/api/v1-sneakers)
+- Insert your API key for each of those variables in the .env file.
 - Open the project in your preferred code editor.
 - Set up a local development environment (e.g., XAMPP, MAMP) with PHP support to host the project on a local server.
 - Access the website by opening the respective PHP files in your web browser.
@@ -35,4 +41,4 @@ Then proceed with the following steps:
 - Make changes or enhancements as desired.
 
 ## Licensing and Rights
-This project is under the MIT license, all rights reserved.
+This project is under the MIT license, all rights reserved. 
