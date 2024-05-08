@@ -6,7 +6,7 @@
     }
 
     $url = 'https://sneaker-database-stockx.p.rapidapi.com/mostpopular?limit=8'; //Limit in link
-    $apiKey = '[REDACTED]';
+    $apiKey_popular = getenv('API_KEY');
 
     // Define the cache directory path
     $cacheDirectory = 'popularproducts_cache_memory/';
@@ -28,7 +28,7 @@
         $context = stream_context_create([
             'http' => [
                 'method' => 'GET',
-                'header' => "X-RapidAPI-Key: $apiKey\r\n" .
+                'header' => "X-RapidAPI-Key: $apiKey_popular\r\n" .
                             "X-RapidAPI-Host: sneaker-database-stockx.p.rapidapi.com\r\n"
             ]
         ]);
